@@ -1,0 +1,25 @@
+syntax = "proto2";
+package netty;
+option java_package = "com.pandong.tool.nnts.model";
+option java_outer_classname = "TransferProto";
+
+enum OperationType {
+    HEARTBEAT = 0;
+    CONNECT = 1;
+    DISCONNECT = 2;
+    TRANSFER = 3;
+    REGISTER = 4;
+    SERVICE_REGISTER = 5;
+}
+
+message Transfer {
+    optional int64 request_id = 1 [default = 0];
+    required int64 client_id = 2;
+    optional string service_name = 3;
+    required OperationType operation = 4;
+    optional string signature = 5;
+    map<string, string> header = 6;
+    map<string, string> cookie = 7;
+    map<string, string> parameter = 8;
+    optional bytes data = 9;
+}
